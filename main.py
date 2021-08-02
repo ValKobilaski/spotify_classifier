@@ -1,5 +1,6 @@
 import requests
 import base64
+import json
 from urllib.parse import urlencode
 
 from secrets import client_id, client_secret
@@ -17,12 +18,29 @@ def get_token():
     access_token = r['access_token']
     return access_token
 
-def get_song_data(uri,token):
+def get_song_josn(uri,token):
     headers = {"Authorization": f"Bearer {token}"}
     endpoint = 	"https://api.spotify.com/v1/audio-features/"
     lookup_url  = f"{endpoint}{uri}"
     r = requests.get(lookup_url,headers = headers)
     return r.json()
     
+
+def get_playlist_json(uri,token):
+    headers = {"Authorization": f"Bearer {token}"}
+    endpoint = 	"https://api.spotify.com/v1/playlists/"
+    lookup_url  = f"{endpoint}{uri}"+"/tracks"
+    r = requests.get(lookup_url,headers = headers)
+    return = r.json()
+    #for key in r_json["items"]:
+    #    print(key["track"]["name"])
+    #print(r_json["items"][0]["track"]["name"])
+
+def get_tracks_from_playlist_json(playlist):
+    track = {}
+    tracks = {"uri": ""}
+    for key in 
+
 token = get_token()
-get_song_data("3Fzlg5r1IjhLk2qRw667od", token)
+#print(get_songs_from_playlist_data("3saqvuBi9fmCTu22uu1ZMN", token))
+get_songs_from_playlist_data("3saqvuBi9fmCTu22uu1ZMN", token)
